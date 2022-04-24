@@ -91,11 +91,18 @@ class Board:
 		self.backBoard = backBoard
 	def findCurrent(self,boardCoords: tuple):
 		#format: (row,column)
+		if boardCoords[0] > len(self.board)-1:
+			input("uERROR in class <Board> func. findCurrent: \nboardCoords[0] > len(self.board)")
+			return
+		if boardCoords[1] > len(self.board[0])-1:
+			input("uERROR in class <Board> func. findCurrent: \nboardCoords[1] > len(self.board[0])")
+			return
 		if boardCoords[0] in [0,1,len(self.board),len(self.board)-1]:
-			pass
+			if "5" in self.backBoard[boardCoords[0]]: return "5"
+			if "3.3" in self.backBoard[boardCoords[0]]: return "3.3"
 		if self.backBoard[boardCoords[0]][boardCoords[1]] == "5": return "5"
 		if self.backBoard[boardCoords[0]][boardCoords[1]] == "3.3": return "3.3"
 
 board1 = Board(boardStandard,backBoardStandard)
 board1.backBoard[0][0] = "5"
-print(board1.findCurrent((0,0)))
+print(board1.findCurrent((10,30)))
